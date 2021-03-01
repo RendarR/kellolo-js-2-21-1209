@@ -1,6 +1,6 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     output: {
@@ -14,18 +14,18 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|svg|gif)$/i,
-                use: ['file-loader']
-            }
-        ]
+                use: ['url-loader']
+            },
+        ],
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-            chunkFilename: '[id].css'
+            filename: 'css/[name].css',
+            chunkFilename: '[id].css',
         }),
         new CopyWebpackPlugin({
             patterns: [
-                { from: './src/assets/imgs', to: 'img' }
+                { from: './src/assets/imgs', to: 'img' },
             ],
         }),
         new HtmlWebpackPlugin({
